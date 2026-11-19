@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SkyScout Weather</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="app-shell">
+    <section class="hero-card">
+      <div class="hero-copy">
+        <p class="eyebrow">Weather Detect App</p>
+        <h1>SkyScout finds your weather in seconds.</h1>
+        <p class="subtitle">
+          Use your current location or search for any city to see live conditions,
+          temperature, wind, and a short 5-day outlook.
+        </p>
+      </div>
+
+      <div class="controls-card">
+        <button id="detectBtn" class="primary-btn" type="button">Detect My Weather</button>
+
+        <form id="searchForm" class="search-form">
+          <label class="search-label" for="cityInput">Search by city</label>
+          <div class="search-row">
+            <input id="cityInput" name="city" type="text" placeholder="Enter city name" autocomplete="off">
+            <button class="secondary-btn" type="submit">Search</button>
+          </div>
+        </form>
+
+        <p id="statusMessage" class="status-message" aria-live="polite">
+          Ready when you are. Location access gives the fastest result.
+        </p>
+      </div>
+    </section>
+
+    <section id="weatherPanel" class="weather-panel hidden" aria-live="polite">
+      <div class="current-card">
+        <div>
+          <p id="locationName" class="location-name">-</p>
+          <h2 id="conditionText" class="condition-text">Waiting for weather data</h2>
+        </div>
+        <div class="temperature-wrap">
+          <span id="temperatureValue" class="temperature-value">--</span>
+          <span class="temperature-unit">deg C</span>
+        </div>
+      </div>
+
+      <div class="details-grid">
+        <article class="detail-tile">
+          <p class="detail-label">Feels like</p>
+          <p id="feelsLikeValue" class="detail-value">--</p>
+        </article>
+        <article class="detail-tile">
+          <p class="detail-label">Wind</p>
+          <p id="windValue" class="detail-value">--</p>
+        </article>
+        <article class="detail-tile">
+          <p class="detail-label">Humidity</p>
+          <p id="humidityValue" class="detail-value">--</p>
+        </article>
+        <article class="detail-tile">
+          <p class="detail-label">Updated</p>
+          <p id="updatedValue" class="detail-value">--</p>
+        </article>
+      </div>
+
+      <section class="forecast-card">
+        <div class="forecast-header">
+          <h3>5-Day Outlook</h3>
+          <p>Daily highs, lows, and sky conditions</p>
+        </div>
+        <div id="forecastGrid" class="forecast-grid"></div>
+      </section>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>

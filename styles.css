@@ -1,0 +1,364 @@
+:root {
+  --bg-top: #0f172a;
+  --bg-bottom: #122c4f;
+  --panel: rgba(8, 15, 31, 0.72);
+  --panel-border: rgba(255, 255, 255, 0.14);
+  --text: #edf4ff;
+  --muted: #a8b8d8;
+  --accent: #ffb84d;
+  --accent-strong: #f97316;
+  --tile: rgba(255, 255, 255, 0.08);
+  --shadow: 0 24px 60px rgba(3, 9, 23, 0.35);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: "Space Grotesk", sans-serif;
+  color: var(--text);
+  background:
+    radial-gradient(circle at top left, rgba(255, 184, 77, 0.20), transparent 30%),
+    radial-gradient(circle at right, rgba(88, 166, 255, 0.20), transparent 35%),
+    linear-gradient(180deg, var(--bg-top), var(--bg-bottom));
+}
+
+body::before,
+body::after {
+  content: "";
+  position: fixed;
+  inset: auto;
+  width: 260px;
+  height: 260px;
+  border-radius: 50%;
+  filter: blur(10px);
+  opacity: 0.55;
+  pointer-events: none;
+}
+
+body::before {
+  top: 8%;
+  right: 7%;
+  background: rgba(255, 184, 77, 0.12);
+}
+
+body::after {
+  left: 5%;
+  bottom: 10%;
+  background: rgba(77, 182, 255, 0.10);
+}
+
+.app-shell {
+  width: min(1100px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 48px 0 64px;
+}
+
+.hero-card,
+.forecast-card,
+.current-card,
+.detail-tile,
+.controls-card {
+  backdrop-filter: blur(18px);
+  background: var(--panel);
+  border: 1px solid var(--panel-border);
+  box-shadow: var(--shadow);
+}
+
+.hero-card {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 24px;
+  padding: 28px;
+  border-radius: 32px;
+}
+
+.hero-copy {
+  padding: 14px 10px 14px 4px;
+}
+
+.eyebrow {
+  margin: 0 0 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-size: 0.82rem;
+}
+
+h1 {
+  margin: 0;
+  max-width: 12ch;
+  font-size: clamp(2.8rem, 6vw, 5.8rem);
+  line-height: 0.92;
+  font-family: "Instrument Serif", serif;
+  font-weight: 400;
+}
+
+.subtitle {
+  margin: 20px 0 0;
+  max-width: 56ch;
+  font-size: 1.02rem;
+  line-height: 1.7;
+  color: var(--muted);
+}
+
+.controls-card {
+  border-radius: 28px;
+  padding: 22px;
+  align-self: stretch;
+}
+
+.primary-btn,
+.secondary-btn {
+  border: 0;
+  cursor: pointer;
+  font: inherit;
+  transition: transform 180ms ease, opacity 180ms ease, background 180ms ease;
+}
+
+.primary-btn:hover,
+.secondary-btn:hover {
+  transform: translateY(-1px);
+}
+
+.primary-btn {
+  width: 100%;
+  padding: 16px 18px;
+  border-radius: 18px;
+  color: #0f172a;
+  font-weight: 700;
+  background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+}
+
+.search-form {
+  margin-top: 18px;
+}
+
+.search-label {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+.search-row {
+  display: flex;
+  gap: 10px;
+}
+
+#cityInput {
+  flex: 1;
+  min-width: 0;
+  padding: 14px 16px;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--text);
+  font: inherit;
+}
+
+#cityInput::placeholder {
+  color: #c5d0e7;
+}
+
+.secondary-btn {
+  padding: 14px 18px;
+  border-radius: 16px;
+  color: var(--text);
+  background: rgba(255, 255, 255, 0.11);
+}
+
+.status-message {
+  min-height: 24px;
+  margin: 16px 2px 0;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+.weather-panel {
+  margin-top: 24px;
+  display: grid;
+  gap: 18px;
+  animation: rise-in 420ms ease;
+}
+
+.hidden {
+  display: none;
+}
+
+.current-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  padding: 28px;
+  border-radius: 28px;
+}
+
+.location-name {
+  margin: 0 0 8px;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 0.82rem;
+}
+
+.condition-text {
+  margin: 0;
+  font-size: clamp(1.7rem, 3vw, 2.6rem);
+}
+
+.temperature-wrap {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  white-space: nowrap;
+}
+
+.temperature-value {
+  font-size: clamp(3.2rem, 8vw, 5.8rem);
+  font-weight: 700;
+  line-height: 1;
+}
+
+.temperature-unit {
+  color: var(--muted);
+  font-size: 1rem;
+}
+
+.details-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+}
+
+.detail-tile {
+  border-radius: 22px;
+  padding: 18px;
+}
+
+.detail-label {
+  margin: 0 0 10px;
+  color: var(--muted);
+}
+
+.detail-value {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.forecast-card {
+  border-radius: 28px;
+  padding: 24px;
+}
+
+.forecast-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.forecast-header h3,
+.forecast-header p {
+  margin: 0;
+}
+
+.forecast-header p {
+  color: var(--muted);
+}
+
+.forecast-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 12px;
+}
+
+.forecast-item {
+  padding: 18px 16px;
+  border-radius: 20px;
+  background: var(--tile);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+}
+
+.forecast-day,
+.forecast-condition {
+  margin: 0;
+}
+
+.forecast-day {
+  font-weight: 700;
+}
+
+.forecast-condition {
+  min-height: 48px;
+  margin-top: 10px;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+.forecast-temp {
+  margin: 16px 0 0;
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 900px) {
+  .hero-card {
+    grid-template-columns: 1fr;
+  }
+
+  .details-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .forecast-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 560px) {
+  .app-shell {
+    width: min(100% - 20px, 1100px);
+    padding-top: 20px;
+  }
+
+  .hero-card,
+  .current-card,
+  .forecast-card,
+  .controls-card {
+    padding: 20px;
+    border-radius: 24px;
+  }
+
+  .current-card {
+    align-items: start;
+    flex-direction: column;
+  }
+
+  .search-row {
+    flex-direction: column;
+  }
+
+  .details-grid,
+  .forecast-grid {
+    grid-template-columns: 1fr;
+  }
+}
